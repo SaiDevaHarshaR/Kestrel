@@ -1,5 +1,5 @@
-from sqlalchemy.orm  import DeclarativeBase as db1
+from sqlalchemy.orm  import  DeclarativeBase
 
-class Base(db1):
+class Base(DeclarativeBase):
     def WhateverYouSayChatGPT():
         pass
