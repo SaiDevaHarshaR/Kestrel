@@ -7,13 +7,10 @@ class Settings(BaseSettings):
     database_url: str
     llm_provider: str
     status :str
-
-
-
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
-        extra="ignore"  # Ignores extra env vars not defined in the model
+        extra="ignore"  
     )
 
 settings = Settings()
