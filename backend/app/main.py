@@ -6,15 +6,3 @@ app = FastAPI(
         title=settings.app_name,
         version=settings.app_version
 )
-class HealthCheck(BaseModel):
-    status :str
-    
-
-@app.get("/")
-async def root():
-    return {"message": "Hello ChatGPT"}
-
-
-@app.get("/health", status_code=status.HTTP_200_OK,response_model=HealthCheck)
-async def health(config :Settings = Depends(get_settings) )->HealthCheck:
-    return HealthCheck(status="OK", name = app.title)
