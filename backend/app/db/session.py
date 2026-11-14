@@ -9,8 +9,7 @@ async_session = async_sessionmaker(eng, expire_on_commit=False)
 async def get_session() -> AsyncGenerator[AsyncSession, None]:
     async with async_session() as session:
         try:
-            yield session
-            
+            yield session 
         except Exception:
             await session.rollback()  
             raise
