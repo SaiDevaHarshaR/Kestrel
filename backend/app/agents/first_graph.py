@@ -32,7 +32,8 @@ graph = (
     .add_node("technical_agent", technical_agent)
     .add_node("general_agent", general_agent)
     .add_conditional_edges("analyze_question",route_question,{"technical_agent": "technical_agent","general_agent": "general_agent"})
-    .add_edge("analyze_question", END)    
+    .add_edge("general_agent", END)
+    .add_edge("technical_agent", END)
     .compile()
 )
 
