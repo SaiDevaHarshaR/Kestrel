@@ -26,7 +26,14 @@ graph = (
     .add_edge(START,"process_question")
     .add_node("analyze_question",analyze_question)
     .add_edge("process_question", "analyze_question")
-    .add_edge("analyze_question", END)
+    .add_conditional_edges(
+    "analyze_question",
+    route_question,
+    {
+        "technical_agent": "technical_agent",
+        "general_agent": "general_agent"
+    }
+)
     
     .compile()
 )
