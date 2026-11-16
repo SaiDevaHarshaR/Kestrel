@@ -1,5 +1,7 @@
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict
+from ..llm.client import client
+
 class State(TypedDict):
     question : str
     status :str
@@ -11,9 +13,14 @@ def process_question(state: State):
     }
 
 def analyze_question(state: State):
-    return {
-        "category":"technical"
-    }
+    question = state["question"]
+    if "LLM" in question:
+        return {"category": "technical"}
+    else:
+        return {"category": "general"}
+
+
+    
 def technical_agent(state: State):
     return {"status" : "technical_reviewed"}
 def general_agent(state:State):
