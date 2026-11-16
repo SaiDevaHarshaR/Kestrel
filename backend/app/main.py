@@ -25,9 +25,6 @@ async def prompt(request: ChatRequest):
     ans = generate_response_stream(prompt)
     return StreamingResponse(content=ans, media_type="text/plain")
 
-
-
-
 @app.get(
     "/health",
     status_code=status.HTTP_200_OK,
