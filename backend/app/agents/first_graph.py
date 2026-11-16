@@ -10,7 +10,7 @@ graph = (
     .add_node("process_question",process_question)
     .add_edge(START,process_question)
     .add_edge("process_question",END)
-    .complie()
+    .compile()
 )
 
-graph.invoke({"text": "what is an LLM?"})
+graph.invoke({"question": "what is an LLM?"})
