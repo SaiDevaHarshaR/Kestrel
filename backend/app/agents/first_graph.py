@@ -8,7 +8,7 @@ def process_question(state: State):
 graph = (
     StateGraph(State)
     .add_node("process_question",process_question)
-    .add_edge(START,process_question)
+    .add_edge(START,"process_question")
     .add_edge("process_question",END)
     .compile()
 )
