@@ -5,3 +5,6 @@ class State(TypedDict):
 
 def process_question(state: State):
     return state
+graph = (
+    StateGraph(State)
+)
