@@ -18,7 +18,7 @@ def analyze_question(state: State):
     if res in ["technical", "general"]:
         return {"category": res}
     else:
-        return "question unrelated"
+        raise ValueError("Gemini returned an invalid category")
 
 def technical_agent(state: State):
     return {"status" : "technical_reviewed"}
