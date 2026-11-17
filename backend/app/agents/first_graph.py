@@ -17,10 +17,9 @@ def process_question(state: State):
 
 def analyze_question(state: State):
     question = state["question"]
-    last_api_error = None
+    last_api_error = []
     #invalid_response = False
     prompt = f"Classify this following question as technical or general : {question}"
-
     for attempt in range(3):
         try:
             response = client.models.generate_content(model="gemini-3.8-flash",contents=prompt)
@@ -31,7 +30,7 @@ def analyze_question(state: State):
                 #invalid_response = True
         except errors.APIError as e:
             time.sleep(2 ** attempt)            
-            last_api_error = e
+            last_api_error = last_api_error.append()
             continue
     if last_api_error is not None:
         raise HTTPException(status_code=502, detail="Gemini API failed after 3 attempts") from last_api_error
