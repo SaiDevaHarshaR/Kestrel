@@ -16,6 +16,7 @@ def process_question(state: State):
 def analyze_question(state: State):
     question = state["question"]
     last_api_error = None
+    invalid_response = False
     prompt = f"Classify this following question as technical or general : {question}"
 
     for attempt in range(3):
@@ -24,10 +25,12 @@ def analyze_question(state: State):
             res = response.text.strip().lower()
             if res in ["technical", "general"]:
                 return {"category": res}
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+            else:
+                invalid_response = True
         except errors.APIError as e:
             last_api_error = e
+    if last_api_error is not None:
+        raise HTTPException(status_code=502, detail="Gemini API failed after 3 attempts") from last_api_error
     raise ValueError("Gemini returned an invalid category")
 
 
