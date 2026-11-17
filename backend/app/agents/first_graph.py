@@ -15,15 +15,17 @@ def process_question(state: State):
 def analyze_question(state: State):
     question = state["question"]
     prompt = f"Classify this following question as technical or general : {question}"
-    response = client.models.generate_content(
-    model="gemini-3.8-flash",
-    contents=prompt
-)
-    res = response.text.strip().lower()
-    if res in ["technical", "general"]:
-        return {"category": res}
-    else:
-        raise ValueError("Gemini returned an invalid category")
+
+    for attempt in range(3):
+        if response_is_valid:
+            response = client.models.generate_content(model="gemini-3.8-flash",contents=prompt)
+            res = response.text.strip().lower()
+            if res in ["technical", "general"]:
+                return {"category": res}
+            else:
+                raise ValueError("Gemini returned an invalid category")
+        else:
+            return "Try again"
 
 def technical_agent(state: State):
     return {"status" : "technical_reviewed"}
