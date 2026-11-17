@@ -3,6 +3,7 @@ from typing import TypedDict
 from ..llm.client import client
 from google.genai import errors
 import time
+from fastapi import HTTPException
 
 class State(TypedDict):
     question : str
