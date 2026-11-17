@@ -1,6 +1,7 @@
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict
 from ..llm.client import client
+from google.genai import errors
 
 class State(TypedDict):
     question : str
@@ -14,15 +15,19 @@ def process_question(state: State):
 
 def analyze_question(state: State):
     question = state["question"]
+    last_api_error = None
     prompt = f"Classify this following question as technical or general : {question}"
 
     for attempt in range(3):
-        response = client.models.generate_content(model="gemini-3.8-flash",contents=prompt)
-        res = response.text.strip().lower()
-        if res in ["technical", "general"]:
-            return {"category": res}
-        else:
-            pass
+        try:
+            response = client.models.generate_content(model="gemini-3.8-flash",contents=prompt)
+            res = response.text.strip().lower()
+            if res in ["technical", "general"]:
+                return {"category": res}
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+        except errors.APIError as e:
+            raise HTTPException(status_code=502,detail=e.message)
     raise ValueError("Gemini returned an invalid category")
 
 
