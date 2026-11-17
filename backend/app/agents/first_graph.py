@@ -12,17 +12,7 @@ def process_question(state: State):
         "status":"processed"
     }
 
-def analyze_question(state: State):
-    question = state["question"]
-    prompt = f"Classify this following question as technical or general : {question}"
 
-    for attempt in range(3):
-        response = client.models.generate_content(model="gemini-3.8-flash",contents=prompt)
-        res = response.text.strip().lower()
-        if res in ["technical", "general"]:
-            return {"category": res}
-        else:
-            return "Trying again"
 
 
 def technical_agent(state: State):
