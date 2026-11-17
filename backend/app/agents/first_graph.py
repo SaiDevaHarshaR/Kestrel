@@ -27,7 +27,6 @@ def analyze_question(state: State):
 
     Question: {question}
     """
-
     last_error = None
 
     for attempt in range(3):
@@ -36,20 +35,14 @@ def analyze_question(state: State):
 
             if not response or not response.text:
                 raise ValueError("Gemini returned an empty response")
-
             result = response.text.strip().lower()
-
             if result in ["technical", "general"]:
                 return {"category": result}
-
             last_error = ValueError(f"Invalid category returned: {result}")
-
         except errors.APIError as e:
             last_error = e
-
         if attempt < 2:
             time.sleep(2 ** attempt)
-
     raise RuntimeError( "Question classification failed after 3 attempts") from last_error
 
 def technical_agent(state: State):
