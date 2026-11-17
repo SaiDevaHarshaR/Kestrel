@@ -27,8 +27,9 @@ def analyze_question(state: State):
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
         except errors.APIError as e:
-            raise HTTPException(status_code=502,detail=e.message)
+            last_api_error = e
     raise ValueError("Gemini returned an invalid category")
+
 
 
 def technical_agent(state: State):
