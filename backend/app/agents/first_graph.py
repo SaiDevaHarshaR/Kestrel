@@ -13,18 +13,19 @@ def process_question(state: State):
     }
 
 def analyze_question(state: State):
-    question = state["question"]
-    if "LLM" in question:
-        return {"category": "technical"}
+    res = response.text.strip().lower()
+
+    if res in ["technical", "general"]:
+        return {"category": res}
     else:
-        return {"category": "general"}
+        return "question unrelated"
 
-
-    
 def technical_agent(state: State):
     return {"status" : "technical_reviewed"}
+
 def general_agent(state:State):
     return {"status":"general_reviewed"}
+
 def route_question(state: State):
     if state["category"] == "technical":
         return "technical_agent"

@@ -7,7 +7,6 @@ class Settings(BaseSettings):
     debug: bool
     database_url: str
     llm_provider: str
-
     gemini_api_key: SecretStr
     model_config = SettingsConfigDict(
         env_file=".env",
