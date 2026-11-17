@@ -2,6 +2,7 @@ from langgraph.graph import StateGraph, START, END
 from typing import TypedDict
 from ..llm.client import client
 from google.genai import errors
+import time
 
 class State(TypedDict):
     question : str
@@ -16,7 +17,7 @@ def process_question(state: State):
 def analyze_question(state: State):
     question = state["question"]
     last_api_error = None
-    invalid_response = False
+    #invalid_response = False
     prompt = f"Classify this following question as technical or general : {question}"
 
     for attempt in range(3):
@@ -25,8 +26,8 @@ def analyze_question(state: State):
             res = response.text.strip().lower()
             if res in ["technical", "general"]:
                 return {"category": res}
-            else:
-                invalid_response = True
+            #else:
+                #invalid_response = True
         except errors.APIError as e:
             time.sleep(2 ** attempt)            
             last_api_error = e
