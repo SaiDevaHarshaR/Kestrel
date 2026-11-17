@@ -28,6 +28,7 @@ def analyze_question(state: State):
             else:
                 invalid_response = True
         except errors.APIError as e:
+            time.sleep(2 ** attempt)            
             last_api_error = e
             continue
     if last_api_error is not None:
