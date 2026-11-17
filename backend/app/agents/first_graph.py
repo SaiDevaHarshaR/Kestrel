@@ -29,6 +29,7 @@ def analyze_question(state: State):
                 invalid_response = True
         except errors.APIError as e:
             last_api_error = e
+            continue
     if last_api_error is not None:
         raise HTTPException(status_code=502, detail="Gemini API failed after 3 attempts") from last_api_error
     raise ValueError("Gemini returned an invalid category")
