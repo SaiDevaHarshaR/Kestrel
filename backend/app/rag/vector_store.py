@@ -13,19 +13,24 @@ collection = client.get_or_create_collection(
 )
 
 def add_document(text: str, source: str):
-    ids = [str(uuid.uuid4()) for chunk in chunks]
-    metadatas = [
-    {"source": source}
-    for chunk in chunks]
-
-    collection.add(
-        ids=ids,
-        documents=text,
-        metadatas=metadatas
-    )
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=100,
-        chunk_overlap=0
+        chunk_size=500,
+        chunk_overlap=100
     )
 
     texts = text_splitter.split_text(text)
+    ids = [str(uuid.uuid4()) for chunk in texts]
+    metadatas = [
+    {"source": source}
+    for chunk in texts]
+
+    collection.add(
+        ids=ids,
+        documents=texts,
+        metadatas=metadatas
+    )
+def retrieve_documents(question: str):
+    collection.query(
+    query_texts=[question],
+    n_results=3
+)
