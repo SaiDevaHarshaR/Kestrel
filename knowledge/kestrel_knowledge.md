@@ -294,7 +294,7 @@ Planned technologies:
 - AI-powered business automation.
 - Production-oriented application deployment.
 
-## **9. GitHub & Development**
+# **9. GitHub & Development**
 
 Your known portfolio includes:
 
@@ -307,7 +307,7 @@ Your known portfolio includes:
 | Terraform AI Chatbot          | DevOps + IaC           |
 | Sahasra LIS GenX              | Healthcare Agentic AI  |
 
-## **10. Career Direction & Target Roles**
+# **10. Career Direction & Target Roles**
 
 Your target roles include:
 
@@ -337,7 +337,7 @@ Your target roles include:
 
 You prefer high-growth AI startups, including smaller engineering teams, and opportunities offering international remote work or visa sponsorship.
 
-## **Overall assessment of your knowledge profile**
+## **Overall assessment of my knowledge profile**
 
 # **AI + Cloud + Data Engineering**
 
