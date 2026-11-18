@@ -5,7 +5,7 @@ def joining(question: str):
     context = " ".join(chunks[0])
     response = client.models.generate_content(
     model="gemini-3.8-flash",
-    contents=context
+    contents=prompt
     )
     prompt = f"""
     Answer the question using the context below.
@@ -17,4 +17,4 @@ def joining(question: str):
     {question}
     """
 
-    return response
+    return response.text
