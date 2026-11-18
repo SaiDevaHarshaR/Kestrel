@@ -2,7 +2,7 @@ from .vector_store import retrieve_documents
 from ..llm.client import client
 def joining(question: str):
     chunks = retrieve_documents(question)
-    context = " ".join(chunks[0])
+    context = "\n\n".join(chunks)
     prompt = f"""
     Answer the question using the context below.
 
