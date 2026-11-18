@@ -37,7 +37,7 @@ llm_client = AsyncOpenAI(
 )
 
 llm = llm_factory(
-    model="gemini-3.8-flash",
+    model="gemini-3.5-flash-lite",
     provider="openai",
     client=llm_client,
     adapter="instructor",
