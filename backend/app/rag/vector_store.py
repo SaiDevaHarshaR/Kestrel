@@ -51,6 +51,8 @@ def retrieve_documents(question: str):
         "distances": results["distances"][0]
     }
 
+
+
 def ingest_knowledge_base():
     with open(
         "knowledge/kestrel_knowledge.md",
