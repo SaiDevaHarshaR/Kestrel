@@ -29,8 +29,11 @@ def add_document(text: str, source: str):
         documents=texts,
         metadatas=metadatas
     )
+
 def retrieve_documents(question: str):
-    collection.query(
-    query_texts=[question],
-    n_results=3
-)
+    results = collection.query(
+        query_texts=[question],
+        n_results=3
+    )
+
+    return results["documents"]
