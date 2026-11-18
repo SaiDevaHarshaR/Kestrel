@@ -5,7 +5,7 @@ client =  chromadb.PersistentClient(path="./chroma_db")
 collection = client.create_collection(
     name="my_collection",
     embedding_function=GoogleGeminiEmbeddingFunction(
-        api_key=settings.get_secret_value("gemini_api_key"),
+        api_key = settings.gemini_api_key.get_secret_value(),
         model_name="gemini-embedding-001"
     )
 )
