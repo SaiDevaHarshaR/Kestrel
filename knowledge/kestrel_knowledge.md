@@ -177,7 +177,7 @@ Developed an AI-powered chatbot for hospital and diagnostic laboratory operation
 
 Important implementation requirement: Konnect Diagnostics integration must remain strictly read-only.
 
-### **B. Autonomous Multi-Agent AI DevOps System**
+## **B. Autonomous Multi-Agent AI DevOps System**
 
 Built an AI-driven DevOps/SRE automation project.
 
@@ -190,7 +190,7 @@ Built an AI-driven DevOps/SRE automation project.
 - Asynchronous agent execution.
 - AI-powered operational troubleshooting.
 
-### **C. SRE-AI-CoPilot**
+## **C. SRE-AI-CoPilot**
 
 - Near-real-time log analysis.
 - FAISS and Redis integration.
@@ -199,7 +199,7 @@ Built an AI-driven DevOps/SRE automation project.
 - Zero-downtime deployment architecture.
 - AI-assisted SRE workflows.
 
-### **D. Local RAG System**
+## **D. Local RAG System**
 
 GitHub: `SaiDevaHarshaR/Local-Rag`
 
@@ -216,20 +216,8 @@ GitHub: `SaiDevaHarshaR/Local-Rag`
 - Streamlit.
 - Docker.
 
-### **E. Custom Grok-Inspired AI Bot**
 
-- Custom conversational AI.
-- LLM integration.
-- AI chatbot development.
-- Backend/API integration.
-
-### **F. DevOps AI Chatbot / Terraform IaC Generator**
-
-- Conversational DevOps assistance.
-- Terraform Infrastructure as Code generation.
-- AI-powered infrastructure assistance.
-
-## **6. AI Architecture & Advanced Engineering Knowledge**
+# **6. AI Architecture & Advanced Engineering Knowledge**
 
 You have also studied and developed knowledge in:
 
