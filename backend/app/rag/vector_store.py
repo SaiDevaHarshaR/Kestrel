@@ -1,4 +1,3 @@
-
 import chromadb
 from chromadb.utils.embedding_functions import GoogleGeminiEmbeddingFunction
 from ..core.config import settings
@@ -58,3 +57,6 @@ def ingest_knowledge_base():
         content = file.read()
 
     add_document(content, source="kestrel_knowledge.md")
+
+
+
