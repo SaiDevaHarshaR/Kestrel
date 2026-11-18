@@ -357,6 +357,4 @@ AWS, Kubernetes, Terraform
 
 **Your strongest differentiator:** Combining AI agents with enterprise data systems, cloud infrastructure and actual business workflows, rather than focusing exclusively on chatbot development.
 
-**One important distinction:** Your certifications are passed, your Sahasra project is deployed, and your other portfolio projects demonstrate hands-on development. Your advanced architecture and model-serving topics include both practical experience and ongoing learning; they shouldn't all be represented as production-level expertise without further evidence.
-
-
+**One important distinction:** My certifications are passed, My Sahasra project is deployed, and my other portfolio projects demonstrate hands-on development. my  advanced architecture and model-serving topics include both practical experience and ongoing learning; they shouldn't all be represented as production-level expertise without further evidence.
