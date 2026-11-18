@@ -1,65 +1,109 @@
-from ragas.dataset_schema import SingleTurnSample
-from ragas.metrics.collections import AnswerRelevancy, Faithfulness, ContextPrecision
-from ..app.core.config import settings
-from ragas.llms import llm_factory
+
+import asyncio
+
+import instructor
+from openai import AsyncOpenAI
 from google import genai
+
+from ragas.dataset_schema import SingleTurnSample
+from ragas.metrics.collections import (
+    AnswerRelevancy,
+    Faithfulness,
+    ContextPrecision,
+)
+from ragas.llms import llm_factory
 from ragas.embeddings import GoogleEmbeddings
 
-client = genai.Client(api_key=settings.gemini_api_key.get_secret_value(),)
-embeddings = GoogleEmbeddings(client=client, model="gemini-embedding-001")
+from ..app.core.config import settings
 
-question = "What framework does Kestrel use for its backend?"
-retrieved_contexts = ["Kestrel uses FastAPI framework for the backend."]
-response = "It uses FastAPI framework."
-reference = "FastAPI"
 
-llm = llm_factory("gemini-2.0-flash", provider="google", client=client)
+# 1. API key
+api_key = settings.gemini_api_key.get_secret_value()
 
-scorer = AnswerRelevancy(llm=llm, embeddings=embeddings)
-result = await scorer.ascore(
-    user_input="What backend framework did Kestrel use?",
-    response="Kestrel uses FastAPI framework.",
+
+# 2. Gemini embeddings client
+embedding_client = genai.Client(api_key=api_key)
+
+embeddings = GoogleEmbeddings(
+    client=embedding_client,
+    model="gemini-embedding-001",
 )
-print(f"Answer Relevancy Score: {result.value}")
 
 
-scorerCP = ContextPrecision(llm=llm)
-resultCP = await scorerCP.ascore(
-    user_input="What vectorDB does Kestrel use?",
-    reference="Kestrel uses ChromaDB.",
-    retrieved_contexts=[
-        "Kestrel uses ChromaDB as a vector database.",
-        "Kestrel uses FastAPI framweork fro backend.",
-    ],
+# 3. Async Gemini evaluator client
+llm_client = AsyncOpenAI(
+    api_key=api_key,
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
 )
-print(f"Context Precision Score: {resultCP.value}")
+
+llm = llm_factory(
+    model="gemini-3.8-flash",
+    provider="openai",
+    client=llm_client,
+    adapter="instructor",
+    mode=instructor.Mode.JSON,
+)
+
+
+# 4. Initialize metrics
+scorer = AnswerRelevancy(
+    llm=llm,
+    embeddings=embeddings,
+)
 
 scorerF = Faithfulness(llm=llm)
-resultF = await scorerF.ascore(
-    user_input="What does Kestrel use for agent tool calling?",
-    response="Kestrel uses LangGraph for agent tool calling.",
-    retrieved_contexts=[
-        "Kestrel uses LangGraph for agent tool calling, and it has technical_agent to answer about technical questions and general_agent which answers questions about general queries"
-    ],
-)
-print(f"Faithfulness Score: {resultF.value}")
+
+scorerCP = ContextPrecision(llm=llm)
 
 
+# 5. Evaluation sample
 sample = SingleTurnSample(
-    user_input=question,
-    retrieved_contexts=retrieved_contexts,
-    response=response,
-    reference=reference
+    user_input="What framework does Kestrel use for its backend?",
+    retrieved_contexts=[
+        "Kestrel uses FastAPI framework for the backend."
+    ],
+    response="It uses FastAPI framework.",
+    reference="FastAPI",
 )
 
+
+# 6. Reusable evaluation function
 async def evaluate_sample(sample: SingleTurnSample):
-    ans = await scorerF.ascore(user_input = sample.user_input,response = sample.response,retrieved_contexts = sample.retrieved_contexts)
-    ans1 = await scorerCP.ascore(user_input = sample.user_input,retrieved_contexts = sample.retrieved_contexts, reference = sample.reference)
-    ans2 = await scorer.ascore(user_input = sample.user_input,response = sample.response)
+
+    faithfulness = await scorerF.ascore(
+        user_input=sample.user_input,
+        response=sample.response,
+        retrieved_contexts=sample.retrieved_contexts,
+    )
+
+    context_precision = await scorerCP.ascore(
+        user_input=sample.user_input,
+        retrieved_contexts=sample.retrieved_contexts,
+        reference=sample.reference,
+    )
+
+    answer_relevancy = await scorer.ascore(
+        user_input=sample.user_input,
+        response=sample.response,
+    )
+
     return {
-    "faithfulness": ans.value,
-    "context_precision": ans1.value,
-    "answer_relevancy": ans2.value
-}
-scores = await evaluate_sample(sample)
-print(scores)
+        "faithfulness": faithfulness.value,
+        "context_precision": context_precision.value,
+        "answer_relevancy": answer_relevancy.value,
+    }
+
+
+# 7. Execute evaluation
+async def main():
+    try:
+        scores = await evaluate_sample(sample)
+        print("\nRAG Evaluation Results:")
+        for metric, score in scores.items():
+            print(f"{metric}: {score:.4f}")
+    finally:
+        await llm_client.close()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
