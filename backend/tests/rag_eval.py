@@ -16,7 +16,7 @@ reference = "FastAPI"
 llm = llm_factory("gemini-2.0-flash", provider="google", client=client)
 
 scorer = AnswerRelevancy(llm=llm, embeddings=embeddings)
-result = scorer.ascore(
+result = await scorer.ascore(
     user_input="What backend framework did Kestrel use?",
     response="Kestrel uses FastAPI framework.",
 )
@@ -56,4 +56,10 @@ async def evaluate_sample(sample: SingleTurnSample):
     ans = await scorerF.ascore(user_input = sample.user_input,response = sample.response,retrieved_contexts = sample.retrieved_contexts)
     ans1 = await scorerCP.ascore(user_input = sample.user_input,retrieved_contexts = sample.retrieved_contexts, reference = sample.reference)
     ans2 = await scorer.ascore(user_input = sample.user_input,response = sample.response)
-    return ans.value,ans1.value,ans2.value #IDK man.. you say
+    return {
+    "faithfulness": ans.value,
+    "context_precision": ans1.value,
+    "answer_relevancy": ans2.value
+}
+scores = await evaluate_sample(sample)
+print(scores)
