@@ -1,10 +1,19 @@
-from ..core.config import settings
-from google import genai
-from .vector_store import results
-def joining():
-    a1 = results["documents"]
-    re = " ".join(a1)
-    return re
-client = genai.Client(api_key = settings.gemini_api_key.get_secret_value())
+from .vector_store import retrieve_documents
+from ..llm.client import client
+def joining(question: str):
+    prompt = f"""
+    Answer the question using the context below.
 
+    Context:
+    {context}
 
+    Question:
+    {question}
+    """
+    chunks = retrieve_documents(question)
+    context = " ".join(chunks)
+    response = client.models.generate_content(
+    model="gemini-3.8-flash",
+    contents=context
+    )
+    return response
