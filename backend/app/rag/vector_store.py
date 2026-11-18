@@ -1,43 +1,60 @@
+
 import chromadb
 from chromadb.utils.embedding_functions import GoogleGeminiEmbeddingFunction
 from ..core.config import settings
-import uuid
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-client =  chromadb.PersistentClient(path="./chroma_db")
+
+client = chromadb.PersistentClient(path="./chroma_db")
+
 collection = client.get_or_create_collection(
-    name="my_collection",
+    name="kestrel_knowledge",
     embedding_function=GoogleGeminiEmbeddingFunction(
-        api_key = settings.gemini_api_key.get_secret_value(),
+        api_key=settings.gemini_api_key.get_secret_value(),
         model_name="gemini-embedding-001"
     )
 )
+
+
 def add_document(text: str, source: str):
-    text_splitter = RecursiveCharacterTextSplitter(
+    splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
         chunk_overlap=100
     )
-    texts = text_splitter.split_text(text)
-    ids = [f"{source}_{i}" for i, chunk in enumerate(texts)]
+
+    texts = splitter.split_text(text)
+
+    ids = [
+        f"{source}_{i}"
+        for i, chunk in enumerate(texts)
+    ]
+
     metadatas = [
-    {"source": source}
-    for chunk in texts]
-    collection.add(
+        {"source": source, "chunk_index": i}
+        for i, chunk in enumerate(texts)
+    ]
+
+    collection.upsert(
         ids=ids,
         documents=texts,
         metadatas=metadatas
     )
+
+
 def retrieve_documents(question: str):
     results = collection.query(
         query_texts=[question],
         n_results=3
     )
 
-    return results["documents"]
-
+    return results["documents"][0] if results["documents"] else []
 
 
 def ingest_knowledge_base():
-    with open("knowledge/kestrel_knowledge.md", "r", encoding="utf-8") as file:
+    with open(
+        "knowledge/kestrel_knowledge.md",
+        "r",
+        encoding="utf-8"
+    ) as file:
         content = file.read()
-        add_document(content, source="kestrel_knowledge.md")
-        
+
+    add_document(content, source="kestrel_knowledge.md")
