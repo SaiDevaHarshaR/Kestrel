@@ -44,9 +44,12 @@ def retrieve_documents(question: str):
         query_texts=[question],
         n_results=3
     )
-
-    return results["documents","id","metadata","distances"][0][0][0][0] if results["documents"] else []
-
+    return {
+        "documents": results["documents"][0],
+        "ids": results["ids"][0],
+        "metadatas": results["metadatas"][0],
+        "distances": results["distances"][0]
+    }
 
 def ingest_knowledge_base():
     with open(
