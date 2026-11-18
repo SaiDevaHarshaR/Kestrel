@@ -76,13 +76,6 @@ Passed - verifiable link: "https://credentials.databricks.com/15bc524b-3963-48cd
 ## **Cloud & DevOps**
 
 - AWS
-  - EC2
-  - Auto Scaling Groups
-  - Elastic Load Balancers
-  - ECS / Fargate
-  - ECR
-  - EKS
-  - ElastiCache
 - Microsoft Azure
 - Docker
 - Kubernetes
