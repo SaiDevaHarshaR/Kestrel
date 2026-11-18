@@ -247,7 +247,7 @@ You have explored advanced LLM engineering topics:
 
 These are areas of learning and exploration, not necessarily all production implementations.
 
-## **7. Flagship Enterprise Project — Aegis AI Platform**
+# **7. Flagship Enterprise Project — Aegis AI Platform**
 
 Your planned enterprise-grade AI platform combines data engineering, AI agents and analytics.
 
@@ -278,7 +278,7 @@ Planned technologies:
 - GitHub Actions.
 - Prometheus and Grafana.
 
-## **8. Other Technical Areas You've Worked With**
+# **8. Other Technical Areas You've Worked With**
 
 - AWS infrastructure provisioning.
 - High-availability architecture.
