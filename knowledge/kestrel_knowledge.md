@@ -59,7 +59,7 @@ Passed - verifiable link: "https://credentials.databricks.com/15bc524b-3963-48cd
 - AI-powered Root Cause Analysis
 - Autonomous AI agents
 
-### **Data Engineering & Databricks**
+## **Data Engineering & Databricks**
 
 - Databricks
 - Delta Lake
@@ -73,7 +73,7 @@ Passed - verifiable link: "https://credentials.databricks.com/15bc524b-3963-48cd
 - Lakehouse architecture
 - SQL analytics
 
-### **Cloud & DevOps**
+## **Cloud & DevOps**
 
 - AWS
   - EC2
@@ -95,7 +95,7 @@ Passed - verifiable link: "https://credentials.databricks.com/15bc524b-3963-48cd
 - SSH tunnelling
 - Infrastructure as Code
 
-### **Monitoring & Observability**
+## **Monitoring & Observability**
 
 - Prometheus
 - Grafana
@@ -104,7 +104,7 @@ Passed - verifiable link: "https://credentials.databricks.com/15bc524b-3963-48cd
 - SRE concepts
 - Application monitoring
 
-### **Databases & Storage**
+## **Databases & Storage**
 
 - MySQL
 - Microsoft SQL Server (MSSQL)
@@ -113,9 +113,9 @@ Passed - verifiable link: "https://credentials.databricks.com/15bc524b-3963-48cd
 - FAISS
 - Delta Lake
 
-## **4. Professional Experience**
+# **4. Professional Experience**
 
-### **CloudAngles — Cloud/DevOps Internship (2024)**
+## **CloudAngles — Cloud/DevOps Internship (2024)**
 
 Hands-on experience with:
 
@@ -131,9 +131,9 @@ Hands-on experience with:
 10. OpenVPN deployment on EC2.
 11. MySQL Master-Master replication.
 
-## **5. Professional Project Work**
+# **5. Professional Project Work**
 
-### **A. Sahasra LIS GenX — AI Agentic Chatbot**
+## **A. Sahasra LIS GenX — AI Agentic Chatbot**
 
 Deployed project
 
