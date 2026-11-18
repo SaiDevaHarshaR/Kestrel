@@ -11,4 +11,4 @@ collection = client.get_or_create_collection(
     )
 )
 def add_document(text: str, source: str):
-
+    ids = [str(uuid.uuid4()) for chunk in chunks]
