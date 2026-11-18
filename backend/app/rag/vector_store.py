@@ -12,33 +12,25 @@ collection = client.get_or_create_collection(
         model_name="gemini-embedding-001"
     )
 )
-
-
 def add_document(text: str, source: str):
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
         chunk_overlap=100
     )
-
     texts = splitter.split_text(text)
-
     ids = [
         f"{source}_{i}"
         for i, chunk in enumerate(texts)
     ]
-
     metadatas = [
         {"source": source, "chunk_index": i}
         for i, chunk in enumerate(texts)
     ]
-
     collection.upsert(
         ids=ids,
         documents=texts,
         metadatas=metadatas
     )
-
-
 def retrieve_documents(question: str):
     results = collection.query(
         query_texts=[question],
@@ -60,6 +52,3 @@ def ingest_knowledge_base():
         content = file.read()
 
     add_document(content, source="kestrel_knowledge.md")
-
-
-
