@@ -1,129 +1,5 @@
-## GenAI Engineer – AthenTech
 
-- Designed, developed, and deployed Sahasra AI, a multi-tenant healthcare AI chatbot replacing the company's existing Zoho chatbot.
-- Built LLM-powered agents using Python, FastAPI, and LangChain, integrating with live hospital and laboratory databases (HIS/LIS).
-- Implemented intent routing, database-aware agent workflows, RAG, and multi-provider LLM failover.
-- Developed secure database interaction with read-only SQL execution, role-based access control, prompt-injection protection, and tenant isolation.
-- Built multiple chatbot modes for hospital analytics, premium medical reports, B2B client assistance, and company FAQs.
-- Implemented Redis caching, token usage tracking, Langfuse observability, and automated evaluation pipelines.
-- Developed an admin panel with client onboarding, license management, permissions, monitoring, and human-in-the-loop answer review.
-- Implemented multilingual support across 11 Indian languages.
-- Built automated testing and accuracy evaluation harnesses, improving performance from 231/280 to 277/280 on a 280-question, 9-language test suite.
-- Deployed and maintained the application on Windows IIS, ensuring production readiness and operational reliability.
-
-
-
-
-I want to join Anthropic because I see AI development moving beyond chatbots and simple LLM integrations towards highly advanced agents, autonomous systems, and I want to contribute to that evolution.
-
-What interests me about Anthropic is its approach to building AI that is not just powerful, but also reliable, interpretable, and safe.
-
-In my current role, I independently built and deployed a multi-tenant healthcare AI agent, where accuracy, security, access control, and reliability were critical. That experience made me realize that building useful AI systems requires much more than choosing a good model.
-
-I see Anthropic as an environment where I can work on challenging AI engineering problems, deepen my understanding of frontier AI, and contribute to technology that has a meaningful impact.
-
-
-
-
-
-
-I want to join Anthropic because I am genuinely interested in the direction where AI is heading, particularly the transition from simple LLM powered applications to capable, autonomous AI Agent systems that can solve complex real world problems.
-
-What attracts me to Anthropic is its work on building AI that is not only powerful but also reliable, interpretable, and safe. I believe these qualities are essential as AI becomes increasingly integrated into critical business operations and everyday decision making.
-
-In my current role as a GenAI Engineer at AthenTech, I independantly designed, developed, and deployed Sahasra AI, a multi-tenant healthcare AI assistant that replaced the company's existing chatbot. Working on a real-world healthcare product taught me that building useful AI goes far beyond connecting an application to an LLM. Accuracy, security, reliability, and responsible access to information are equally important.
-
-I worked on agentic workflows, database connected AI agents, multi provider LLM failover, prompt injection protection, role-based access control, evaluation pipelines, and human-in-the-loop review systems. These experiences made me particularly interested in the engineering challenges involved in making AI systems dependable and safe in production environments.
-
-I also want to challenge myself by working alongside people who are pushing the boundaries of AI research and engineering. I am particularly excited by the opportunity to learn from Anthropic's approach to frontier AI development while contributing my hands-on experience in building and deploying agentic applications.
-
-Ultimately, I see Anthropic as a place where I can grow as an AI engineer while contributing to a larger mission of making increasingly capable AI systems genuinely useful, trustworthy, and beneficial to people all over the world.
-
-
-
-
-
-I am looking for an opportunity to take on more challenging engineering problems, work with larger datasets, and grow alongside experienced engineers. My current experience has given me end to end exposure to building and deploying production AI systems. I now want to broaden my expertise in large scale data engineering and analytics while contributing to products that operate at significant scale.
-
-
-
-
-
-
-
-
-
-I want to work at Sarvam AI because I am genuinely excited about building AI technology from India that can compete on a global scale. Sarvam's focus on developing foundation models, voice AI, and multilingual AI systems aligns closely with my interests and experience in agentic AI and LLM engineering.
-
-Having independently built and deployed Sahasra AI, a multilingual healthcare AI assistant supporting 11 Indian languages, I have experienced the challenges of making AI useful in real world environments, particularly around accuracy, language understanding, reliability, and scalability.
-
-I see Sarvam AI as an opportunity to work on challenging AI engineering problems, contribute to products with meaningful real-world impact, and deepen my expertise in building production-grade AI systems. I would love to contribute my experience in agentic AI, backend engineering, and LLM systems to a team working towards making AI more accessible and capable for India.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-On Sahasra, the pain wasn’t raw QPS as much as high latency under concurrent premium questions - LLM + MSSQL paths often sat 10–20s while a burst of users stacked up on a single Windows/IIS node. I cut load and wait time by pushing high-frequency asks (bills, collections, dashboards) onto an intent/fixed-SQL fast path so they never hit the LLM, added an answer cache for repeated questions, and kept `/health` cheap so the proxy could still see the process as alive under load. On the data side we stayed on per-institution MSSQL with read-only logins, strict SELECT-only execution, and scoped tools instead of wide ad-hoc access; multi-tenant isolation was by activation code -> one DB, not one shared schema. We load-tested with concurrent clients and used caching off/on to see the cliff; full horizontal scale (second node, shared Redis queue, hard LLM concurrency caps) is the next architectural step we identified when traffic grows past one box.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# **Complete Knowledge, Skills & Work Profile**
-
-Compiled from our conversations and saved memory · Updated November 18, 2026
-
-## **1. Education & Professional Background**
+# **1. Education & Professional Background**
 
 - **Degree:** B.Tech in Computer Science / Data Science.
 - **Graduation:** 2025.
@@ -131,23 +7,23 @@ Compiled from our conversations and saved memory · Updated November 18, 2026
 - **Experience:** Approximately 1–2 years, including internship and professional project work.
 - **Current professional direction:** AI Engineer, Agentic AI Engineer, AI Forward Deployed Engineer (FDE), AI Architect, AI Data Engineer and LLMOps Engineer.
 
-## **2. Certifications — Passed**
+# **2. Certifications — Passed**
 
 **NVIDIA NCA-GENL**
 
-Passed
+Passed: - verifiable link: "http://credential.nvidia.com/9c5ad222-d2bf-4519-a540-00325c2d5606"
 
 **NVIDIA NCP-AAI**
 
-Passed
+Passed - verifiable link: "http://credential.nvidia.com/d830cb8c-79da-4e73-83ae-c297689fed5f"
 
 **Databricks Data Engineer Associate**
 
-Passed
+Passed - verifiable link: "https://credentials.databricks.com/15bc524b-3963-48cd-a90b-739e95dca090"
 
-## **3. Technical Knowledge & Skills**
+# **3. Technical Knowledge & Skills**
 
-### **Programming & Backend**
+## **Programming & Backend**
 
 - Python
 - Java
@@ -159,7 +35,7 @@ Passed
 - Vite
 - Streamlit
 
-### **Artificial Intelligence & LLM Engineering**
+## **Artificial Intelligence & LLM Engineering**
 
 - Generative AI
 - Agentic AI
@@ -494,8 +370,5 @@ AWS, Kubernetes, Terraform
 **Your strongest differentiator:** Combining AI agents with enterprise data systems, cloud infrastructure and actual business workflows, rather than focusing exclusively on chatbot development.
 
 **One important distinction:** Your certifications are passed, your Sahasra project is deployed, and your other portfolio projects demonstrate hands-on development. Your advanced architecture and model-serving topics include both practical experience and ongoing learning; they shouldn't all be represented as production-level expertise without further evidence.
-
-
-
 
 
