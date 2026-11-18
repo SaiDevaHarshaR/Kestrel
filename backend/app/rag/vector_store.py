@@ -2,6 +2,7 @@ import chromadb
 from chromadb.utils.embedding_functions import GoogleGeminiEmbeddingFunction
 from ..core.config import settings
 import uuid
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 client =  chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_or_create_collection(
     name="my_collection",
@@ -22,3 +23,9 @@ def add_document(text: str, source: str):
         documents=text,
         metadatas=metadatas
     )
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=100,
+        chunk_overlap=0
+    )
+
+    texts = text_splitter.split_text(text)
