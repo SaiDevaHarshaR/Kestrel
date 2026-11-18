@@ -37,3 +37,9 @@ def retrieve_documents(question: str):
     )
 
     return results["documents"]
+
+
+
+def ingest_knowledge_base():
+    with open("knowledge/kestrel_knowledge.md", "r", encoding="utf-8") as file:
+        content = file.read()
