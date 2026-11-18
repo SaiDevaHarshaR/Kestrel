@@ -4,10 +4,10 @@
 - **Degree:** B.Tech in Computer Science / Data Science.
 - **Graduation:** 2025.
 - **Location:** Hyderabad, India.
-- **Experience:** Approximately 1–2 years, including internship and professional project work.
+- **Experience:** Approximately 1-2 years, including internship and professional project work.
 - **Current professional direction:** AI Engineer, Agentic AI Engineer, AI Forward Deployed Engineer (FDE), AI Architect, AI Data Engineer and LLMOps Engineer.
 
-# **2. Certifications — Passed**
+# **2. Certifications - Passed**
 
 **NVIDIA NCA-GENL**
 
@@ -108,7 +108,7 @@ Passed - verifiable link: "https://credentials.databricks.com/15bc524b-3963-48cd
 
 # **4. Professional Experience**
 
-## **CloudAngles — Cloud/DevOps Internship (2024)**
+## **CloudAngles - Cloud/DevOps Internship (2024)**
 
 Hands-on experience with:
 
@@ -126,7 +126,7 @@ Hands-on experience with:
 
 # **5. Professional Project Work**
 
-## **A. Sahasra LIS GenX — AI Agentic Chatbot**
+## **A. Sahasra LIS GenX - AI Agentic Chatbot**
 
 Deployed project
 
@@ -240,7 +240,7 @@ You have explored advanced LLM engineering topics:
 
 These are areas of learning and exploration, not necessarily all production implementations.
 
-# **7. Flagship Enterprise Project — Aegis AI Platform**
+# **7. Flagship Enterprise Project - Aegis AI Platform**
 
 Your planned enterprise-grade AI platform combines data engineering, AI agents and analytics.
 
