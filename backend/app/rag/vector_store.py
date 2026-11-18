@@ -10,13 +10,15 @@ collection = client.get_or_create_collection(
         model_name="gemini-embedding-001"
     )
 )
-collection.add(
-    ids=,
-    documents=________,
-    metadatas=________
-)
+
 def add_document(text: str, source: str):
     ids = [str(uuid.uuid4()) for chunk in chunks]
     metadatas = [
     {"source": source}
     for chunk in chunks]
+
+    collection.add(
+        ids=ids,
+        documents=text,
+        metadatas=metadatas
+    )
