@@ -1,2 +1,16 @@
+
 def build_context(retrieval_result: dict) -> str:
-    pass
+    documents = retrieval_result.get("documents") or []
+    ids = retrieval_result.get("ids") or []
+    metadata = retrieval_result.get("metadatas") or []
+
+    chunks = []
+
+    for i, document in enumerate(documents):
+        chunks.append(
+            f"Chunk ID: {ids[i]}\n"
+            f"Source: {metadata[i].get('source', 'Unknown')}\n"
+            f"Content: {document}"
+        )
+
+    return "\n\n".join(chunks) if chunks else "No retrieval results"
