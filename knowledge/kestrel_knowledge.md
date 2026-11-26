@@ -159,16 +159,6 @@ Developed an AI-powered chatbot for hospital and diagnostic laboratory operation
 - REST API development.
 - Admin dashboard architecture.
 
-**Database knowledge gained:**
-
-- `mstPatientRegistration`
-- `trnINVLABPRI`
-- `View_TestCode`
-- `trnInvStatus`
-- `mstDoctor`
-- `LISBRANCH`
-
-Important implementation requirement: Konnect Diagnostics integration must remain strictly read-only.
 
 ## **B. Autonomous Multi-Agent AI DevOps System**
 
