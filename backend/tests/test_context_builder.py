@@ -4,8 +4,10 @@ retrieval_result = {
     "ids": ["chunk_0"],
     "metadatas": [{"source": "kestrel_knowledge.md"}]
 }
+result = build_context(retrieval_result)
 
-result = build_context(retrieval_result=" ")
+assert "FastAPI" in result
+
 assert "Chunk ID:" in result
 assert "Source:" in result
 assert "Content:" in result
