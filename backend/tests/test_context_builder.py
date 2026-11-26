@@ -7,7 +7,11 @@ retrieval_result = {
 result = build_context(retrieval_result)
 
 assert "FastAPI" in result
-
 assert "Chunk ID:" in result
 assert "Source:" in result
 assert "Content:" in result
+
+result1 = build_context({})
+
+assert result1 == "No retrieval results"
+
