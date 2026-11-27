@@ -14,5 +14,6 @@ def is_within_budget(text: str, input_budget: int) -> bool:
 def select_chunks(retrieval_result: dict, input_budget: int):
     documents = retrieval_result.get("documents") or []
     selected_chunks = []
-    for
+    for document in enumerate(documents):
+        pass
     return "\n\n".join(selected_chunks)
