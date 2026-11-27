@@ -9,4 +9,7 @@ def calculate_input_budget(reserved_output_tokens: int, context_window: int) -> 
     return remaining_input
 
 def is_within_budget(text: str, input_budget: int) -> bool:
-    return count_tokens(text) <= input_budget 
+    return count_tokens(text) <= input_budget
+
+def select_chunks(retrieval_result, input_budget):
+    pass
