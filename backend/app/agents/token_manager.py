@@ -11,6 +11,8 @@ def calculate_input_budget(reserved_output_tokens: int, context_window: int) -> 
 def is_within_budget(text: str, input_budget: int) -> bool:
     return count_tokens(text) <= input_budget
 
-def select_chunks(retrieval_result, input_budget: int):
+def select_chunks(retrieval_result: dict, input_budget: int):
     documents = retrieval_result.get("documents") or []
     selected_chunks = []
+    for
+    return "\n\n".join(selected_chunks)
