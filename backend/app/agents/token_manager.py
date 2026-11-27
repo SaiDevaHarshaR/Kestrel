@@ -17,6 +17,6 @@ def select_chunks(retrieval_result: dict, input_budget: int):
     for document in documents:
         candidate = "\n\n".join(selected_chunks  +[document])
         if is_within_budget(candidate, input_budget):
-            selected_chunks = selected_chunks.append(document)
+            selected_chunks.append(document)
     return "\n\n".join(selected_chunks)
     
