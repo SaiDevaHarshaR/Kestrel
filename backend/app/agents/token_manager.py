@@ -8,5 +8,5 @@ def calculate_input_budget(reserved_output_tokens: int, context_window: int) -> 
     remaining_input = context_window-reserved_output_tokens
     return remaining_input
 
-def is_within_budget(text: str, input_budget: int) -> str:
-    
+def is_within_budget(text: str, input_budget: int) -> bool:
+    return count_tokens(text) <= input_budget 
