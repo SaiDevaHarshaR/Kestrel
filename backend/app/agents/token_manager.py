@@ -19,4 +19,3 @@ def select_chunks(retrieval_result: dict, input_budget: int):
         if is_within_budget(candidate, input_budget):
             selected_chunks.append(document)
     return "\n\n".join(selected_chunks)
-    
