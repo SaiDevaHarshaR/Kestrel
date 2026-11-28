@@ -8,10 +8,9 @@ client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_or_create_collection(
     name="kestrel_knowledge",
     embedding_function=GoogleGeminiEmbeddingFunction(
-        api_key=settings.gemini_api_key.get_secret_value(),
-        model_name="gemini-embedding-001"
-    )
-)
+    model_name="gemini-embedding-001",
+    api_key_env_var="GEMINI_API_KEY"
+))
 def add_document(text: str, source: str):
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
