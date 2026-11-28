@@ -11,6 +11,9 @@ class State(TypedDict):
     category: str
     context: str
 
+def retrieve_context(state: State):
+    ques = state.question
+    bbc = build_budgeted_context(ques, input_budget)
 
 def process_question(state: State):
     return {"status": "processed"}
@@ -49,8 +52,6 @@ def analyze_question(state: State):
 def technical_agent(state: State):
     return {"status": "technical_reviewed"}
 
-def retrieve_context(state: State):
-    return pass
 
 def general_agent(state: State):
     return {"status": "general_reviewed"}
