@@ -17,7 +17,8 @@ embedding_client = genai.Client(
 client = chromadb.PersistentClient(path="./chroma_manual")
 
 collection = client.get_or_create_collection(
-    name="kestrel_knowledge"
+    name="kestrel_knowledge",
+    embedding_function=None
 )
 
 
