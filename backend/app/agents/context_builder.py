@@ -1,4 +1,3 @@
-
 def build_context(retrieval_result: dict) -> str:
     documents = retrieval_result.get("documents") or []
     ids = retrieval_result.get("ids") or []
@@ -16,4 +15,6 @@ def build_context(retrieval_result: dict) -> str:
     return "\n\n".join(chunks) if chunks else "No retrieval results"
 
 def build_budgeted_context(question:str , input_budget: int)->str: 
-    pass
+    retrieve_documents()
+    build_context()
+    select_chunks()
