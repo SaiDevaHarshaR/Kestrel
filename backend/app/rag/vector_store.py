@@ -3,11 +3,10 @@ from chromadb.utils.embedding_functions import GoogleGeminiEmbeddingFunction
 from ..core.config import settings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 import os
-client = chromadb.PersistentClient(path="./chroma_db")
-os.environ.setdefault(
-    "GEMINI_API_KEY",
-    settings.gemini_api_key.get_secret_value()
-)
+client = chromadb.PersistentClient(path="./chroma_db_clean")
+from ..core.config import settings
+
+os.environ["GEMINI_API_KEY"] = settings.gemini_api_key.get_secret_value()
 collection = client.get_or_create_collection(
     name="kestrel_knowledge",
     embedding_function=GoogleGeminiEmbeddingFunction(
