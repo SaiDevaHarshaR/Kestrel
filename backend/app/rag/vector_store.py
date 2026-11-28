@@ -1,18 +1,22 @@
-import chromadb
-from chromadb.utils.embedding_functions import GoogleGeminiEmbeddingFunction
-from ..core.config import settings
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 import os
-client = chromadb.PersistentClient(path="./chroma_db_clean")
+import chromadb
 from ..core.config import settings
+from chromadb.utils.embedding_functions import GoogleGeminiEmbeddingFunction
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+# Load API key BEFORE initializing ChromaDB
 os.environ["GEMINI_API_KEY"] = settings.gemini_api_key.get_secret_value()
+
+# Initialize ChromaDB
+client = chromadb.PersistentClient(path="./chroma_db_clean")
+
 collection = client.get_or_create_collection(
     name="kestrel_knowledge",
     embedding_function=GoogleGeminiEmbeddingFunction(
-    model_name="gemini-embedding-001",
-    api_key_env_var="GEMINI_API_KEY"
-))
+        model_name="gemini-embedding-001",
+        api_key_env_var="GEMINI_API_KEY"
+    )
+)
 def add_document(text: str, source: str):
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
