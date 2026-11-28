@@ -17,7 +17,7 @@ def generate_response_stream(prompt: str) -> Iterator[str]:
             status_code=502,
             detail=e.message or "AI streaming error."
         )
-def generate_response(prompt:str) -> str:
+def generate_response(prompt :str) -> str:
     try:
         response = client.models.generate_content( model='gemini-3.8-flash',contents=prompt )
         if not response or not response.text:

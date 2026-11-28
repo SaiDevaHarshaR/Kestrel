@@ -1,6 +1,7 @@
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict, Literal
 from ..llm.client import client
+from ..llm.service import generate_response
 from google.genai import errors
 import time
 from .context_builder import build_budgeted_context
@@ -14,13 +15,10 @@ class State(TypedDict):
 
 prompt = f"""
 You are Kestrel's technical assistant.
-
 Use ONLY the supplied context to answer.
 If the answer isn't present in the context, explicitly say you don't have enough information.
-
 Context:
 {state["context"]}
-
 Question:
 {state["question"]}
 """
