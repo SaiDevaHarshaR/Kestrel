@@ -2,7 +2,7 @@ import chromadb
 from chromadb.utils.embedding_functions import GoogleGeminiEmbeddingFunction
 from ..core.config import settings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
+import os
 client = chromadb.PersistentClient(path="./chroma_db")
 
 collection = client.get_or_create_collection(
