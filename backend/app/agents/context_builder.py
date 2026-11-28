@@ -14,3 +14,6 @@ def build_context(retrieval_result: dict) -> str:
         )
 
     return "\n\n".join(chunks) if chunks else "No retrieval results"
+
+def build_budgeted_context():
+    pass
