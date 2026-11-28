@@ -5,12 +5,19 @@ from google.genai import errors
 import time
 from .context_builder import build_budgeted_context
 
+
 class State(TypedDict):
     question: str
     status: str
     category: str
     context: str
 
+prompt = f"""
+answer using the supplied context - {state["context"]}
+ and {state["question"]}.
+ Treat the context as the only source of factual information.
+If the answer isn't present in the context, explicitly say you don't have enough information.
+"""
 def retrieve_context(state: State ):
     question = state["question"]
     context = build_budgeted_context(question, 10000)
@@ -66,7 +73,8 @@ graph = (
     .add_node("analyze_question", analyze_question)
     .add_node("technical_agent", technical_agent)
     .add_node("general_agent", general_agent)
-    .add_edge(START, "process_question")
+    .add_edge(START, "retrieve_context")
+    .add_edge("retrieve_context", "process_question")
     .add_edge("process_question", "analyze_question")
     .add_conditional_edges(
         "analyze_question",
@@ -82,7 +90,8 @@ graph = (
 result = graph.invoke({
     "question": "What is an LLM?",
     "status": "pending",
-    "category": ""
+    "category": "",
+    "context": ""
 })
 
 print(result)
