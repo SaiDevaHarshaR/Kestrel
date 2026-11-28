@@ -1,3 +1,5 @@
+from .token_manager import select_chunks
+from ..rag.vector_store import retrieve_documents
 def build_context(retrieval_result: dict) -> str:
     documents = retrieval_result.get("documents") or []
     ids = retrieval_result.get("ids") or []
@@ -15,6 +17,6 @@ def build_context(retrieval_result: dict) -> str:
     return "\n\n".join(chunks) if chunks else "No retrieval results"
 
 def build_budgeted_context(question:str , input_budget: int)->str: 
-    retrieve_documents()
-    build_context()
-    select_chunks()
+    rd = retrieve_documents(question)
+    sc = select_chunks(rd, input_budget)
+    return sc

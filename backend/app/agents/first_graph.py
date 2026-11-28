@@ -9,6 +9,7 @@ class State(TypedDict):
     question: str
     status: str
     category: str
+    context: str
 
 
 def process_question(state: State):
