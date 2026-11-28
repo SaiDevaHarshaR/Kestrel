@@ -12,6 +12,7 @@ class State(TypedDict):
     status: str
     category: str
     context: str
+    prompt: str
 
 prompt = f"""
 You are Kestrel's technical assistant.
@@ -61,6 +62,7 @@ def analyze_question(state: State):
     raise RuntimeError( "Question classification failed after 3 attempts") from last_error
 
 def technical_agent(state: State):
+    answer = generate_response(prompt)
     return {"status": "technical_reviewed"}
 
 
