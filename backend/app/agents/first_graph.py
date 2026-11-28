@@ -12,9 +12,9 @@ class State(TypedDict):
     context: str
 
 def retrieve_context(state: State ):
-    ques = state["question"]
-    bbc = build_budgeted_context(ques, 10000)
-    return {"context" : bbc}
+    question = state["question"]
+    context = build_budgeted_context(question, 10000)
+    return {"context" : context}
 
 def process_question(state: State):
     return {"status": "processed"}
