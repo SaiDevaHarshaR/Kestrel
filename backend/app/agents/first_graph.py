@@ -49,6 +49,9 @@ def analyze_question(state: State):
 def technical_agent(state: State):
     return {"status": "technical_reviewed"}
 
+def retrieve_context(state: State):
+    return pass
+
 def general_agent(state: State):
     return {"status": "general_reviewed"}
 def route_question(state: State) -> Literal["technical_agent", "general_agent"]:
