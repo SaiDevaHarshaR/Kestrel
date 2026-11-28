@@ -14,15 +14,6 @@ class State(TypedDict):
     context: str
     prompt: str
 
-prompt = f"""
-You are Kestrel's technical assistant.
-Use ONLY the supplied context to answer.
-If the answer isn't present in the context, explicitly say you don't have enough information.
-Context:
-{state["context"]}
-Question:
-{state["question"]}
-"""
 def retrieve_context(state: State ):
     question = state["question"]
     context = build_budgeted_context(question, 10000)
@@ -62,12 +53,35 @@ def analyze_question(state: State):
     raise RuntimeError( "Question classification failed after 3 attempts") from last_error
 
 def technical_agent(state: State):
-    answer = generate_response(prompt)
-    return {"status": "technical_reviewed", "prompt":prompt}
+    prompt = f"""
+    You are Kestrel's technical assistant.
+    Use ONLY the supplied context.
+    If the answer isn't present in the context, explicitly say you don't have enough information.
 
+    Context:
+    {state["context"]}
+
+    Question:
+    {state["question"]}
+    """
+
+    answer = generate_response(prompt)
+    return {"status": "technical_reviewed", "answer": answer}
 
 def general_agent(state: State):
-    return {"status": "general_reviewed"}
+    prompt = f"""
+    You are Kestrel's general assistant.
+    Use ONLY the supplied context.
+    If the answer isn't present in the context, explicitly say you don't have enough information.
+
+    Context:
+    {state["context"]}
+
+    Question:
+    {state["question"]}
+    """
+    answer = generate_response(prompt)
+    return {"status": "general_reviewed", "answer":answer}
 def route_question(state: State) -> Literal["technical_agent", "general_agent"]:
     if state["category"] == "technical":
         return "technical_agent"
