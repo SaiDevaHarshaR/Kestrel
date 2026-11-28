@@ -13,10 +13,16 @@ class State(TypedDict):
     context: str
 
 prompt = f"""
-answer using the supplied context - {state["context"]}
- and {state["question"]}.
- Treat the context as the only source of factual information.
+You are Kestrel's technical assistant.
+
+Use ONLY the supplied context to answer.
 If the answer isn't present in the context, explicitly say you don't have enough information.
+
+Context:
+{state["context"]}
+
+Question:
+{state["question"]}
 """
 def retrieve_context(state: State ):
     question = state["question"]
