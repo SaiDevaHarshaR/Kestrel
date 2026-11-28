@@ -19,7 +19,6 @@ def retrieve_context(state: State ):
 def process_question(state: State):
     return {"status": "processed"}
 
-
 def analyze_question(state: State):
     question = state["question"]
 
@@ -62,6 +61,7 @@ def route_question(state: State) -> Literal["technical_agent", "general_agent"]:
     return "general_agent"
 graph = (
     StateGraph(State)
+    .add_node("retrieve_context",retrieve_context)
     .add_node("process_question", process_question)
     .add_node("analyze_question", analyze_question)
     .add_node("technical_agent", technical_agent)
