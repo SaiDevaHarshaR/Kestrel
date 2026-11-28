@@ -3,7 +3,7 @@ from typing import TypedDict, Literal
 from ..llm.client import client
 from google.genai import errors
 import time
-
+from .context_builder import build_budgeted_context
 
 class State(TypedDict):
     question: str
@@ -11,9 +11,10 @@ class State(TypedDict):
     category: str
     context: str
 
-def retrieve_context(state: State):
-    ques = state.question
-    bbc = build_budgeted_context(ques, input_budget)
+def retrieve_context(state: State ):
+    ques = state["question"]
+    bbc = build_budgeted_context(ques, 10000)
+    return {"context" : bbc}
 
 def process_question(state: State):
     return {"status": "processed"}
