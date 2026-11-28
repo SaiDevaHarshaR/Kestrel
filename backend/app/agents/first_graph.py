@@ -63,7 +63,7 @@ def analyze_question(state: State):
 
 def technical_agent(state: State):
     answer = generate_response(prompt)
-    return {"status": "technical_reviewed"}
+    return {"status": "technical_reviewed", "prompt":prompt}
 
 
 def general_agent(state: State):
