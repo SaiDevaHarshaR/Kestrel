@@ -106,12 +106,11 @@ graph = (
     .compile()
 )
 
-
-result = graph.invoke({
+if __name__ == "__main__":
+    result = graph.invoke({
     "question": "What is an LLM?",
     "status": "pending",
-    "category": "",
-    "context": ""
+    "category": ""
 })
+    print(result)
 
-print(result)
